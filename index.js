@@ -1,19 +1,26 @@
 const http = require("http");
 const url = require("url");
+
+const cleanupOldEmails = require("./src/controllers/cleanupOldEmails.js");
 const fetchEmails = require("./src/controllers/fetch.js");
 
+global.EMAILS = [];
+
 const server = http.createServer((req, res) => {
-    // redirect each request to the right controller
     const parsedUrl = url.parse(req.url, true);
     const path = parsedUrl.pathname;
     const trimmedPath = path.replace(/^\/+|\/+$/g, "");
 
-    // if method is post and url is /fetch, call fetch controller
     if (req.method === "POST" && trimmedPath === "fetch") {
         fetchEmails(req, res);
     } else if (req.method === "GET" && trimmedPath === "ping") {
         res.writeHead(200);
         res.end("pong");
+    } else if (req.method === "POST" && trimmedPath === "cleanup/oldEmails") {
+        cleanupOldEmails(req, res);
+    } else {
+        res.writeHead(404);
+        res.end("Not found");
     }
 });
 

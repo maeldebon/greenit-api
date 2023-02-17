@@ -65,11 +65,11 @@ const fetchEmails = (req, res) => {
                     });
                 });
                 f.once("error", function (err) {
-                    console.log("Fetch error: " + err);
+                    console.error("Fetch error: " + err);
                 });
                 f.once("end", function () {
                     console.log("Done fetching all messages!");
-                    console.log(emails);
+                    global.EMAILS = emails;
                     imap.end();
 
                     res.statusCode = 200;
@@ -80,7 +80,7 @@ const fetchEmails = (req, res) => {
         });
 
         imap.once("error", function (err) {
-            console.log(err);
+            console.error(err);
         });
 
         imap.once("end", function () {
