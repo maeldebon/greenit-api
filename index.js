@@ -11,6 +11,9 @@ const server = http.createServer((req, res) => {
     // if method is post and url is /fetch, call fetch controller
     if (req.method === "POST" && trimmedPath === "fetch") {
         fetchEmails(req, res);
+    } else if (req.method === "GET" && trimmedPath === "ping") {
+        res.writeHead(200);
+        res.end("pong");
     }
 });
 
