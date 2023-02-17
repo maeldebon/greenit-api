@@ -30,7 +30,7 @@ const fetchEmails = (req, res) => {
         imap.once("ready", function () {
             openInbox(function (err, box) {
                 if (err) throw err;
-                const f = imap.seq.fetch("1:3", {
+                const f = imap.seq.fetch("1:*", {
                     bodies: "HEADER.FIELDS (FROM TO SUBJECT DATE)",
                     struct: true,
                 });
