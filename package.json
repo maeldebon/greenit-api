@@ -1,0 +1,12 @@
+{
+    "name": "maileen",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "A light and green email client",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "imap": "^0.8.19"
+    }
+}
