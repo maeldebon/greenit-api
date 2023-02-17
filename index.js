@@ -1,6 +1,6 @@
-import http from "http";
-import url from "url";
-import { fetchEmails } from "./controllers/fetch.js";
+const http = require("http");
+const url = require("url");
+const fetchEmails = require("./src/controllers/fetch.js");
 
 const server = http.createServer((req, res) => {
     // redirect each request to the right controller

@@ -1,4 +1,4 @@
-import Imap from "imap";
+const Imap = require("imap");
 
 const fetchEmails = (req, res) => {
     req.on("data", (chunk) => {
@@ -91,4 +91,4 @@ const fetchEmails = (req, res) => {
     });
 };
 
-export { fetchEmails };
+module.exports = fetchEmails;
